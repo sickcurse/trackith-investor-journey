@@ -1,4 +1,3 @@
-
 import { useState } from "react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -18,7 +17,8 @@ import {
   ArrowRight,
   Star,
   Building,
-  DollarSign
+  DollarSign,
+  ExternalLink
 } from "lucide-react";
 
 const Index = () => {
@@ -50,6 +50,10 @@ const Index = () => {
       interests: "",
       feedback: ""
     });
+  };
+
+  const handleGoogleFormClick = () => {
+    window.open('https://docs.google.com/forms/d/e/1FAIpQLSfCmLxgQopCFeLyocBAJc7V03NOc7WG5C9ySdyGrj0ptN6wdw/viewform', '_blank');
   };
 
   const features = [
@@ -118,8 +122,14 @@ const Index = () => {
                 View Investment Deck
                 <ArrowRight className="ml-2 w-5 h-5" />
               </Button>
-              <Button size="lg" variant="outline" className="border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-4 text-lg">
-                Schedule Demo
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white/30 text-white hover:bg-white/10 font-semibold px-8 py-4 text-lg"
+                onClick={handleGoogleFormClick}
+              >
+                Take Investor Survey
+                <ExternalLink className="ml-2 w-5 h-5" />
               </Button>
             </div>
           </div>
@@ -226,7 +236,7 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Investor Survey Section */}
+      {/* Updated Investor Survey Section */}
       <section className="py-20 bg-gradient-to-br from-blue-50 to-indigo-100">
         <div className="container mx-auto px-6">
           <div className="max-w-4xl mx-auto">
@@ -235,7 +245,7 @@ const Index = () => {
                 Partner With Trackith
               </h2>
               <p className="text-xl text-gray-600">
-                Join leading investors in shaping the future of enterprise analytics. Share your investment interests below.
+                Join leading investors in shaping the future of enterprise analytics. Share your investment interests with us.
               </p>
             </div>
             
@@ -246,123 +256,29 @@ const Index = () => {
                   Investment Interest Survey
                 </CardTitle>
                 <CardDescription className="text-blue-100">
-                  Help us understand your investment criteria and timeline
+                  Complete our detailed investment survey to help us understand your criteria and timeline
                 </CardDescription>
               </CardHeader>
-              <CardContent className="p-8">
-                <form onSubmit={handleSurveySubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <Label htmlFor="name" className="text-sm font-semibold text-gray-700">Full Name *</Label>
-                      <Input
-                        id="name"
-                        value={surveyData.name}
-                        onChange={(e) => setSurveyData({...surveyData, name: e.target.value})}
-                        required
-                        className="border-gray-200 focus:border-blue-500"
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="company" className="text-sm font-semibold text-gray-700">Company/Fund *</Label>
-                      <Input
-                        id="company"
-                        value={surveyData.company}
-                        onChange={(e) => setSurveyData({...surveyData, company: e.target.value})}
-                        required
-                        className="border-gray-200 focus:border-blue-500"
-                      />
-                    </div>
+              <CardContent className="p-12 text-center">
+                <div className="space-y-6">
+                  <div className="text-lg text-gray-600 leading-relaxed">
+                    Our comprehensive survey covers investment size, timeline, sector preferences, and specific areas of interest. 
+                    This helps us provide you with the most relevant information about Trackith's investment opportunity.
                   </div>
                   
-                  <div className="space-y-2">
-                    <Label htmlFor="email" className="text-sm font-semibold text-gray-700">Email Address *</Label>
-                    <Input
-                      id="email"
-                      type="email"
-                      value={surveyData.email}
-                      onChange={(e) => setSurveyData({...surveyData, email: e.target.value})}
-                      required
-                      className="border-gray-200 focus:border-blue-500"
-                    />
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <Label className="text-sm font-semibold text-gray-700">Investment Size Range</Label>
-                    <RadioGroup
-                      value={surveyData.investmentSize}
-                      onValueChange={(value) => setSurveyData({...surveyData, investmentSize: value})}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="1-5M" id="1-5M" />
-                        <Label htmlFor="1-5M">$1M - $5M</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="5-15M" id="5-15M" />
-                        <Label htmlFor="5-15M">$5M - $15M</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="15-50M" id="15-50M" />
-                        <Label htmlFor="15-50M">$15M - $50M</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="50M+" id="50M+" />
-                        <Label htmlFor="50M+">$50M+</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-                  
-                  <div className="space-y-3">
-                    <Label className="text-sm font-semibold text-gray-700">Investment Timeline</Label>
-                    <RadioGroup
-                      value={surveyData.timeline}
-                      onValueChange={(value) => setSurveyData({...surveyData, timeline: value})}
-                    >
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="immediate" id="immediate" />
-                        <Label htmlFor="immediate">Immediate (0-3 months)</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="short" id="short" />
-                        <Label htmlFor="short">Short-term (3-6 months)</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="medium" id="medium" />
-                        <Label htmlFor="medium">Medium-term (6-12 months)</Label>
-                      </div>
-                      <div className="flex items-center space-x-2">
-                        <RadioGroupItem value="exploring" id="exploring" />
-                        <Label htmlFor="exploring">Currently exploring</Label>
-                      </div>
-                    </RadioGroup>
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="interests" className="text-sm font-semibold text-gray-700">Specific Areas of Interest</Label>
-                    <Input
-                      id="interests"
-                      placeholder="e.g., AI/ML, SaaS, Enterprise Software"
-                      value={surveyData.interests}
-                      onChange={(e) => setSurveyData({...surveyData, interests: e.target.value})}
-                      className="border-gray-200 focus:border-blue-500"
-                    />
-                  </div>
-                  
-                  <div className="space-y-2">
-                    <Label htmlFor="feedback" className="text-sm font-semibold text-gray-700">Additional Comments</Label>
-                    <Textarea
-                      id="feedback"
-                      placeholder="Any questions or specific information you'd like to know about Trackith?"
-                      value={surveyData.feedback}
-                      onChange={(e) => setSurveyData({...surveyData, feedback: e.target.value})}
-                      className="border-gray-200 focus:border-blue-500 min-h-[100px]"
-                    />
-                  </div>
-                  
-                  <Button type="submit" size="lg" className="w-full bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-4 text-lg">
-                    Submit Investment Interest
-                    <ArrowRight className="ml-2 w-5 h-5" />
+                  <Button 
+                    size="lg" 
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold px-12 py-6 text-xl"
+                    onClick={handleGoogleFormClick}
+                  >
+                    Complete Investment Survey
+                    <ExternalLink className="ml-3 w-6 h-6" />
                   </Button>
-                </form>
+                  
+                  <p className="text-sm text-gray-500 mt-4">
+                    Survey takes approximately 3-5 minutes to complete
+                  </p>
+                </div>
               </CardContent>
             </Card>
           </div>
