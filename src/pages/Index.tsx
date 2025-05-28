@@ -18,7 +18,8 @@ import {
   Star,
   Building,
   DollarSign,
-  ExternalLink
+  ExternalLink,
+  Instagram
 } from "lucide-react";
 
 const Index = () => {
@@ -54,6 +55,10 @@ const Index = () => {
 
   const handleGoogleFormClick = () => {
     window.open('https://docs.google.com/forms/d/e/1FAIpQLSfCmLxgQopCFeLyocBAJc7V03NOc7WG5C9ySdyGrj0ptN6wdw/viewform', '_blank');
+  };
+
+  const handleInstagramClick = () => {
+    window.open('https://www.instagram.com/trackith?igsh=MTg5MGt6aW03ano0Yg%3D%3D&utm_source=qr', '_blank');
   };
 
   const features = [
@@ -130,6 +135,15 @@ const Index = () => {
               >
                 Take Investor Survey
                 <ExternalLink className="ml-2 w-5 h-5" />
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="border-white/30 text-white hover:bg-white/10 font-semibold px-6 py-4 text-lg"
+                onClick={handleInstagramClick}
+              >
+                <Instagram className="mr-2 w-5 h-5" />
+                Follow us on Instagram
               </Button>
             </div>
           </div>
@@ -305,6 +319,55 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Footer */}
+      <footer className="bg-gray-900 text-white py-12">
+        <div className="container mx-auto px-6">
+          <div className="grid md:grid-cols-4 gap-8">
+            <div className="md:col-span-2">
+              <h3 className="text-2xl font-bold mb-4">Trackith</h3>
+              <p className="text-gray-400 mb-6 max-w-md">
+                Revolutionizing enterprise data analytics with AI-powered insights and real-time monitoring solutions.
+              </p>
+              <div className="flex space-x-4">
+                <Button 
+                  variant="ghost" 
+                  size="sm"
+                  className="text-gray-400 hover:text-white hover:bg-gray-800"
+                  onClick={handleInstagramClick}
+                >
+                  <Instagram className="w-5 h-5 mr-2" />
+                  @trackith
+                </Button>
+              </div>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4">Company</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">About Us</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Careers</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Press</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Contact</a></li>
+              </ul>
+            </div>
+            
+            <div>
+              <h4 className="font-semibold mb-4">Investors</h4>
+              <ul className="space-y-2 text-gray-400">
+                <li><a href="#" className="hover:text-white transition-colors">Investment Deck</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Due Diligence</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Financials</a></li>
+                <li><a href="#" className="hover:text-white transition-colors">Team Bios</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div className="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+            <p>&copy; 2024 Trackith. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
     </div>
   );
 };
